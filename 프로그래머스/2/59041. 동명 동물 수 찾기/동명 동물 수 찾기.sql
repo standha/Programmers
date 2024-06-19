@@ -1,0 +1,7 @@
+-- 코드를 입력하세요
+SELECT NAME, COUNT(NAME)
+FROM ANIMAL_INS
+-- 이름으로 같은 값을 가진 행끼리 하나의 그룹으로 뭉쳐줌
+GROUP BY NAME
+HAVING COUNT(NAME)>1
+ORDER BY NAME;
