@@ -1,0 +1,13 @@
+-- 코드를 입력하세요
+
+SELECT CATEGORY, PRICE MAX_PRICE, PRODUCT_NAME
+FROM (
+    SELECT CATEGORY, PRICE, PRODUCT_NAME,    
+    --RANK() OVER 함수 이용해서 순위 매겨주기(DESE로 내림차순)
+        RANK() OVER (PARTITION BY CATEGORY ORDER BY PRICE DESC) AS RANK 
+    FROM FOOD_PRODUCT 
+    WHERE CATEGORY IN ('과자', '국', '김치', '식용유')
+
+)
+WHERE RANK=1 --제일 높은 순위 하나면(제일 비싼 가격)
+ORDER BY MAX_PRICE DESC;
